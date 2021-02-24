@@ -60,3 +60,22 @@ for p in products:
 	print(p[0])						#抓出清單中所有[0]位置的資料出來
 	print(p[0] , '的價格是' , p[1])	#抓出清單中所有[0] [1]位置的資料出來
 									#因為for loop是從頭開始跑 所以從第一個資料跑完 才會跑第二個
+
+# 練習寫入檔案 把上面的商品資料寫入檔案中
+# 如果一開始沒有txt檔 做寫入的動作時 系統會自動新增txt檔 如果本身已有這檔案 那這動作會覆蓋
+# W是指寫入  f是當作這個txt檔 簡稱而已 當作打開的txt檔
+# \n 是換行
+# with是系統自動幫忙close 檔案
+
+# with open('products.txt' , 'w') as f:			# 打開檔案
+# 	for p in products:
+# 		f.write(p[0] + ',' + p[1] + '\n')		# 寫入檔案
+
+# txt檔改存成csv檔 資料裡面會有不同屬性 csv也可以用excel打開
+# csv檔 通常用逗點做區隔 如果沒有逗點做分隔的話 資料會全在同一格
+
+with open('products.csv' , 'w') as f:			# 打開檔案
+	for p in products:
+		f.write(p[0] + ',' + p[1] + '\n')		# 寫入檔案
+
+
