@@ -48,7 +48,7 @@ while True:
 	name = input('請輸入商品名稱: ')
 	if name == 'q':
 		break
-	price = input('請入商品價格: ')
+	price = input('請入商品價格: ') 			#這邊寫入 是字串喔 不是int
 	products.append( [name , price] )
 
 print(products)
@@ -74,8 +74,11 @@ for p in products:
 # txt檔改存成csv檔 資料裡面會有不同屬性 csv也可以用excel打開
 # csv檔 通常用逗點做區隔 如果沒有逗點做分隔的話 資料會全在同一格
 
-with open('products.csv' , 'w') as f:			# 打開檔案
+# 使用utf-8 是因為編碼 要告訴程式用這個編碼 沒有寫的話 新增商品 價格的文字會變成亂碼
+
+with open('products.csv' , 'w' , encoding='utf-8') as f:			# 打開檔案
+	f.write('商品,價格\n')
 	for p in products:
-		f.write(p[0] + ',' + p[1] + '\n')		# 寫入檔案
+		f.write(p[0] + ',' + p[1] + '\n')		# 寫入檔案 這邊都是字串
 
 
