@@ -43,22 +43,22 @@
 # p.append(price)
 # 直接把p拿掉 在大清單那邊新增時 改成products.append( [name , proce] ) 直接加進去
 
-products=[]
-while True:
-	name = input('請輸入商品名稱: ')
-	if name == 'q':
-		break
-	price = input('請入商品價格: ') 			#這邊寫入 是字串喔 不是int
-	products.append( [name , price] )
+# products=[]
+# while True:
+# 	name = input('請輸入商品名稱: ')
+# 	if name == 'q':
+# 		break
+# 	price = input('請入商品價格: ') 			#這邊寫入 是字串喔 不是int
+# 	products.append( [name , price] )
 
-print(products)
+# print(products)
 
 # 用for loop 印出清單
 
-for p in products:
-	print(p)
-	print(p[0])						#抓出清單中所有[0]位置的資料出來
-	print(p[0] , '的價格是' , p[1])	#抓出清單中所有[0] [1]位置的資料出來
+# for p in products:
+# 	print(p)
+# 	print(p[0])						#抓出清單中所有[0]位置的資料出來
+# 	print(p[0] , '的價格是' , p[1])	#抓出清單中所有[0] [1]位置的資料出來
 									#因為for loop是從頭開始跑 所以從第一個資料跑完 才會跑第二個
 
 # 練習寫入檔案 把上面的商品資料寫入檔案中
@@ -76,9 +76,39 @@ for p in products:
 
 # 使用utf-8 是因為編碼 要告訴程式用這個編碼 沒有寫的話 新增商品 價格的文字會變成亂碼
 
+# with open('products.csv' , 'w' , encoding='utf-8') as f:			# 打開檔案
+# 	f.write('商品,價格\n')
+# 	for p in products:
+# 		f.write(p[0] + ',' + p[1] + '\n')		# 寫入檔案 這邊都是字串
+
+# 讀取檔案 再新增資料到檔案
+# strip是把\n這個換行去掉 
+# split 是做切割 一行中有幾個字串 填入逗號 用逗號當作切割標準
+
+products=[]
+with open('products.csv' , 'r' , encoding='utf-8') as f:
+	for line in f:	
+		if '商品,價鉻' in line:
+			continue										# 繼續 只是先跳過這一回 跳到下一回再跑										
+		nams , price = line.strip().split(',')				#詳情看影片 65章					
+		products.append( [name , price] )
+# 使用者輸入
+while True:
+	name = input('請輸入商品名稱: ')
+	if name == 'q':
+		break
+	price = input('請入商品價格: ') 			
+	products.append( [name , price] )
+print(products)
+
+# 印出所有購買紀錄
+for p in products:
+	print(p)
+	print(p[0])						
+	print(p[0] , '的價格是' , p[1])
+
+# 寫入檔案
 with open('products.csv' , 'w' , encoding='utf-8') as f:			# 打開檔案
 	f.write('商品,價格\n')
 	for p in products:
-		f.write(p[0] + ',' + p[1] + '\n')		# 寫入檔案 這邊都是字串
-
-
+		f.write(p[0] + ',' + p[1] + '\n')
