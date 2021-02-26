@@ -85,13 +85,29 @@
 # strip是把\n這個換行去掉 
 # split 是做切割 一行中有幾個字串 填入逗號 用逗號當作切割標準
 
+# 檢查檔案在不在
+import os # operating system
+
 products=[]
-with open('products.csv' , 'r' , encoding='utf-8') as f:
-	for line in f:	
-		if '商品,價鉻' in line:
-			continue										# 繼續 只是先跳過這一回 跳到下一回再跑										
-		nams , price = line.strip().split(',')				#詳情看影片 65章					
-		products.append( [name , price] )
+
+if os.path.isfile('products.csv'):
+	print('找到了')
+	with open('products.csv' , 'r' , encoding='utf-8') as f:
+		for line in f:	
+			if '商品,價鉻' in line:
+				continue										# 繼續 只是先跳過這一回 跳到下一回再跑										
+			nams , price = line.strip().split(',')				#詳情看影片 65章					
+			products.append( [name , price] )
+	print(products)
+
+else:
+	print('找不到檔案')
+
+
+
+
+
+
 # 使用者輸入
 while True:
 	name = input('請輸入商品名稱: ')
